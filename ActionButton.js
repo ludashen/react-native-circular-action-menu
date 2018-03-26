@@ -56,8 +56,11 @@ export default class ActionButton extends Component {
   }
 
   getActionContainerStyle() {
+    const { hideShadow } = this.props;
     const {alignItems, justifyContent} = alignMap[this.props.position];
-    return [styles.overlay, styles.actionContainer, {
+    return [styles.overlay, styles.actionContainer, 
+      hideShadow ? {} : styles.shadow,
+      {
       alignItems,
       justifyContent,
     }];
@@ -312,6 +315,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'transparent',
+  },
+  shadow: {
+    shadowOpacity: 0.35,
+    shadowOffset: {
+      width: 0,
+      height: 5
+    },
+    shadowColor: "#000",
+    shadowRadius: 3,
+    elevation: 5
   },
   btn: {
     justifyContent: 'center',
